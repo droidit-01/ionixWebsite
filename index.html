@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ionix Technologies - Elite Development Solutions</title>
+	            <!-- --saffron: #c6613f; -->
+            <!-- --dark-saffron: #a34f2f; -->
+            <!-- --deep-saffron: #8a3f22; -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+
+			    --saffron: #ec6b40;
+    --dark-saffron: #ff895c;
+    --deep-saffron: #ac5837;
+			
+            --bg-light: #FFFFFF;
+            --bg-secondary: #F8F9FA;
+            --text-dark: #1a1a1a;
+            --text-medium: #4a4a4a;
+            --text-light: #6a6a6a;
+            --accent-glow: rgba(198, 97, 63, 0.15);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated gradient background */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, var(--accent-glow) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(198, 97, 63, 0.08) 0%, transparent 50%),
+                var(--bg-light);
+            z-index: -1;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Tech Icons Pattern */
+        .tech-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.06;
+            pointer-events: none;
+        }
+
+        .tech-icon {
+            position: absolute;
+            font-size: 2.5rem;
+            color: var(--saffron);
+            animation: floatIcon 20s infinite ease-in-out;
+            opacity: 0.5;
+        }
+
+        .tech-icon:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+        .tech-icon:nth-child(2) { top: 20%; right: 8%; animation-delay: 2s; }
+        .tech-icon:nth-child(3) { top: 40%; left: 15%; animation-delay: 4s; }
+        .tech-icon:nth-child(4) { top: 60%; right: 20%; animation-delay: 1s; }
+        .tech-icon:nth-child(5) { top: 80%; left: 10%; animation-delay: 3s; }
+        .tech-icon:nth-child(6) { top: 15%; left: 50%; animation-delay: 5s; }
+        .tech-icon:nth-child(7) { top: 50%; right: 5%; animation-delay: 2.5s; }
+        .tech-icon:nth-child(8) { top: 70%; left: 40%; animation-delay: 1.5s; }
+        .tech-icon:nth-child(9) { top: 30%; right: 30%; animation-delay: 4.5s; }
+        .tech-icon:nth-child(10) { top: 85%; right: 15%; animation-delay: 3.5s; }
+
+        @keyframes floatIcon {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(-30px) rotate(5deg);
+                opacity: 0.6;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(198, 97, 63, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 1rem 5%;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--saffron), var(--dark-saffron));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-medium);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--saffron);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--saffron);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, var(--saffron), var(--dark-saffron));
+            color: white;
+            padding: 0.75rem 1.8rem;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(198, 97, 63, 0.3);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(198, 97, 63, 0.5);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 5% 4rem;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(198, 97, 63, 0.1);
+            border: 1px solid rgba(198, 97, 63, 0.2);
+            border-radius: 50px;
+            color: var(--saffron);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, var(--saffron), var(--dark-saffron));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            color: var(--text-medium);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.6s backwards;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--saffron), var(--dark-saffron));
+            color: white;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(198, 97, 63, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(198, 97, 63, 0.6);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--saffron);
+            padding: 1.2rem 3rem;
+            border: 2px solid var(--saffron);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            background: var(--saffron);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 5%;
+            background: var(--bg-secondary);
+        }
+
+        .services-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(198, 97, 63, 0.1);
+            border: 1px solid rgba(198, 97, 63, 0.2);
+            border-radius: 50px;
+            color: var(--saffron);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .section-header h2 .gradient-text {
+            background: linear-gradient(135deg, var(--saffron), var(--dark-saffron));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-medium);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border: 1px solid rgba(198, 97, 63, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--saffron);
+            box-shadow: 0 20px 60px rgba(198, 97, 63, 0.15);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--saffron), var(--dark-saffron));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(198, 97, 63, 0.3);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .service-card p {
+            color: var(--text-medium);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+        }
+
+        .service-features li {
+            padding: 0.5rem 0;
+            color: var(--text-medium);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .service-features li::before {
+            content: '→';
+            color: var(--saffron);
+            font-weight: bold;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 20px;
+            background: var(--bg-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(198, 97, 63, 0.1);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--saffron), var(--dark-saffron));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            font-weight: 500;
+        }
+
+        /* Technologies Section */
+        .technologies {
+            padding: 6rem 5%;
+            background: var(--bg-secondary);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 3rem auto 0;
+        }
+
+        .tech-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(198, 97, 63, 0.1);
+        }
+
+        .tech-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--saffron);
+            box-shadow: 0 10px 30px rgba(198, 97, 63, 0.15);
+        }
+
+        .tech-item-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-item-name {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 5%;
+            background: white;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .cta-section h2 .gradient-text {
+            background: linear-gradient(135deg, var(--saffron), var(--dark-saffron));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            color: var(--text-medium);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 5% 2rem;
+            background: var(--bg-secondary);
+            border-top: 1px solid rgba(198, 97, 63, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--saffron);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: var(--text-medium);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--saffron);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(198, 97, 63, 0.1);
+            color: var(--text-medium);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient">
+        <div class="tech-icons">
+            <div class="tech-icon">⚛️</div>
+            <div class="tech-icon">📱</div>
+            <div class="tech-icon">🔧</div>
+            <div class="tech-icon">☁️</div>
+            <div class="tech-icon">🔌</div>
+            <div class="tech-icon">💻</div>
+            <div class="tech-icon">🚀</div>
+            <div class="tech-icon">⚡</div>
+            <div class="tech-icon">🌐</div>
+            <div class="tech-icon">🛠️</div>
+        </div>
+    </div>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">Ionix Technologies</div>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#technologies">Technologies</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="cta-btn">Start Project</button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">🚀 Direct to Developers</div>
+                <h1>
+                    Build The Future with <br>
+                    <span class="gradient-text">Ionix Technologies</span>
+                </h1>
+                <p class="hero-description">
+                    We craft cutting-edge web applications, mobile solutions, IoT systems, and developer utilities that transform businesses and empower innovation.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#services" class="btn-primary">
+                        Explore Services →
+                    </a>
+                    <a href="#contact" class="btn-secondary">
+                        Let's Connect
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="services-container">
+            <div class="section-header">
+                <div class="section-badge">What We Do</div>
+                <h2>Our <span class="gradient-text">Core Expertise</span></h2>
+                <p>Comprehensive development solutions tailored for modern businesses</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <h3>Web Applications</h3>
+                    <p>Scalable, responsive web applications built with modern frameworks and cloud-native architecture.</p>
+                    <ul class="service-features">
+                        <li>Progressive Web Apps (PWA)</li>
+                        <li>Real-time Collaboration Tools</li>
+                        <li>API-First Development</li>
+                        <li>Cloud-Native Solutions</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Mobile Development</h3>
+                    <p>Native and cross-platform mobile apps that deliver exceptional experiences on iOS and Android.</p>
+                    <ul class="service-features">
+                        <li>React Native & Flutter</li>
+                        <li>Native iOS & Android</li>
+                        <li>Offline-First Architecture</li>
+                        <li>Push Notifications</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🔌</div>
+                    <h3>IoT Solutions</h3>
+                    <p>Connected device ecosystems with edge computing and intelligent automation capabilities.</p>
+                    <ul class="service-features">
+                        <li>Device Management Platforms</li>
+                        <li>Real-Time Data Analytics</li>
+                        <li>Edge Computing Solutions</li>
+                        <li>Hardware Integration</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🛠️</div>
+                    <h3>Developer Utilities</h3>
+                    <p>Powerful tools and libraries that accelerate workflows and improve code quality.</p>
+                    <ul class="service-features">
+                        <li>CLI Tools & Automation</li>
+                        <li>SDK Development</li>
+                        <li>API Wrappers & Libraries</li>
+                        <li>Developer Documentation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Projects Delivered</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">Client Satisfaction</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Developer Partners</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Support Available</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="technologies" id="technologies">
+        <div class="services-container">
+            <div class="section-header">
+                <div class="section-badge">Tech Stack</div>
+                <h2>Technologies We <span class="gradient-text">Master</span></h2>
+                <p>Industry-leading tools and frameworks for modern development</p>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-item-icon">⚛️</div>
+                    <div class="tech-item-name">React</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">📱</div>
+                    <div class="tech-item-name">React Native</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">🟢</div>
+                    <div class="tech-item-name">Node.js</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">🐍</div>
+                    <div class="tech-item-name">Python</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">☁️</div>
+                    <div class="tech-item-name">AWS</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">🔷</div>
+                    <div class="tech-item-name">Docker</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">🔥</div>
+                    <div class="tech-item-name">Firebase</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-item-icon">💚</div>
+                    <div class="tech-item-name">MongoDB</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+        <div class="cta-content">
+            <h2>Ready to Build Something <span class="gradient-text">Extraordinary?</span></h2>
+            <p>Let's discuss your next project and create solutions that set new standards in your industry.</p>
+            <div class="hero-buttons">
+                <a href="mailto:hello@ionixtech.dev" class="btn-primary">Get in Touch →</a>
+                <a href="#" class="btn-secondary">View Portfolio</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Ionix Technologies</h3>
+                <p>Elite development solutions for businesses that demand excellence. Direct to developers, no compromises.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <a href="#services">Web Development</a>
+                <a href="#services">Mobile Apps</a>
+                <a href="#services">IoT Solutions</a>
+                <a href="#services">Developer Tools</a>
+            </div>
+            <div class="footer-section">
+                <h3>Company</h3>
+                <a href="#about">About Us</a>
+                <a href="#">Portfolio</a>
+                <a href="#">Careers</a>
+                <a href="#">Blog</a>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <a href="mailto:hello@ionixtech.dev">hello@ionixtech.dev</a>
+                <a href="#">GitHub</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Twitter</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Ionix Technologies. All rights reserved. Crafted with precision.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
