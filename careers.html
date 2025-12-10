@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers - Ionix Technologies | Join Our Team</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Careers Specific Styles */
+        .careers-hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 5% 4rem;
+            position: relative;
+            text-align: center;
+        }
+
+        .careers-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .careers-hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .careers-hero-description {
+            font-size: 1.3rem;
+            color: var(--text-medium);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        /* Culture Section */
+        .culture-section {
+            padding: 6rem 5%;
+            background: transparent;
+        }
+
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .culture-card {
+            background: var(--bg-glass);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid var(--border-light);
+            backdrop-filter: blur(20px);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .culture-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-saffron);
+        }
+
+        .culture-card:hover {
+            border-color: var(--saffron);
+            transform: translateY(-5px);
+        }
+
+        .culture-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-saffron);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .culture-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .culture-card p {
+            color: var(--text-medium);
+            line-height: 1.6;
+        }
+
+        /* Values Section */
+        .values-section {
+            padding: 6rem 5%;
+            background: transparent;
+        }
+
+        .values-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .value-number {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-saffron);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .value-item h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .value-item p {
+            color: var(--text-medium);
+            line-height: 1.6;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            padding: 6rem 5%;
+            background: transparent;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .benefit-card {
+            background: var(--bg-glass);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid var(--border-light);
+            backdrop-filter: blur(20px);
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            border-color: var(--saffron);
+            transform: translateY(-3px);
+        }
+
+        .benefit-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-saffron);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .benefit-content h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-content p {
+            color: var(--text-medium);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* No Openings Message */
+        .openings-section {
+            padding: 6rem 5%;
+            background: transparent;
+            text-align: center;
+        }
+
+        .openings-card {
+            background: var(--bg-glass);
+            border-radius: 24px;
+            padding: 4rem 3rem;
+            border: 1px solid var(--border-light);
+            backdrop-filter: blur(20px);
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .openings-glow {
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,107,53,0.1) 0%, rgba(255,107,53,0) 70%);
+            z-index: -1;
+        }
+
+        .openings-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--gradient-saffron);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            color: white;
+            font-size: 2.5rem;
+        }
+
+        .openings-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .openings-description {
+            color: var(--text-medium);
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Talent Network */
+        .talent-network {
+            padding: 6rem 5%;
+            background: transparent;
+        }
+
+        .network-card {
+            background: var(--bg-glass);
+            border-radius: 24px;
+            padding: 4rem 3rem;
+            border: 1px solid var(--border-light);
+            backdrop-filter: blur(20px);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .network-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .network-description {
+            color: var(--text-medium);
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .network-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-input {
+            padding: 1rem 1.5rem;
+            background: var(--bg-glass-heavy);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            color: var(--text-light);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--saffron);
+        }
+
+        .form-input.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .submit-btn {
+            padding: 1.2rem 2.5rem;
+            background: var(--gradient-saffron);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .careers-hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .careers-hero-title {
+                font-size: 2rem;
+            }
+            
+            .careers-hero-description {
+                font-size: 1.1rem;
+            }
+            
+            .culture-grid,
+            .values-grid,
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .openings-card,
+            .network-card {
+                padding: 3rem 2rem;
+            }
+            
+            .openings-title,
+            .network-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .culture-card,
+            .benefit-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .openings-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+        }
+
+        /* Careers Hero Grid */
+.careers-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    min-height: 70vh;
+}
+
+.careers-visual {
+    position: relative;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Tech Ecosystem */
+.tech-ecosystem {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Innovation Hub */
+.innovation-hub {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.hub-core {
+    width: 80px;
+    height: 80px;
+    background: var(--gradient-saffron);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    box-shadow: 0 0 30px var(--saffron-glow);
+    animation: pulse 2s infinite alternate;
+}
+
+.hub-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    background: var(--saffron-glow);
+    border-radius: 50%;
+    opacity: 0.3;
+    filter: blur(20px);
+    animation: glow-pulse 3s infinite alternate;
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        box-shadow: 0 0 20px var(--saffron-glow);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.1);
+        box-shadow: 0 0 40px var(--saffron-glow);
+    }
+}
+
+@keyframes glow-pulse {
+    0% {
+        opacity: 0.2;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0.4;
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+}
+
+/* Talent Orbits */
+.talent-orbit {
+    position: absolute;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.orbit-1 {
+    width: 200px;
+    height: 200px;
+    animation: rotate 15s linear infinite;
+}
+
+.orbit-2 {
+    width: 250px;
+    height: 250px;
+    animation: rotate 20s linear infinite reverse;
+}
+
+.orbit-3 {
+    width: 300px;
+    height: 300px;
+    animation: rotate 25s linear infinite;
+}
+
+.orbit-4 {
+    width: 350px;
+    height: 350px;
+    animation: rotate 30s linear infinite reverse;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.talent-node {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.node-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--saffron);
+    font-size: 1.2rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.node-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: var(--saffron-glow);
+    border-radius: 50%;
+    opacity: 0;
+    filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.talent-node:hover .node-icon {
+    background: var(--gradient-saffron);
+    color: white;
+    transform: translateX(-50%) scale(1.2);
+}
+
+.talent-node:hover .node-glow {
+    opacity: 0.3;
+}
+
+/* Connection Paths */
+.connection-path {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--saffron), transparent);
+    transform-origin: left center;
+    opacity: 0.3;
+}
+
+.path-1 {
+    width: 100px;
+    transform: translate(-50%, -50%) rotate(0deg);
+    animation: path-glow 2s infinite;
+}
+
+.path-2 {
+    width: 125px;
+    transform: translate(-50%, -50%) rotate(90deg);
+    animation: path-glow 2s infinite 0.5s;
+}
+
+.path-3 {
+    width: 150px;
+    transform: translate(-50%, -50%) rotate(180deg);
+    animation: path-glow 2s infinite 1s;
+}
+
+.path-4 {
+    width: 175px;
+    transform: translate(-50%, -50%) rotate(270deg);
+    animation: path-glow 2s infinite 1.5s;
+}
+
+@keyframes path-glow {
+    0%, 100% {
+        opacity: 0.1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Floating Tech Elements */
+.floating-tech {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.floating-tech:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.tech-shape {
+    width: 40px;
+    height: 40px;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.floating-tech:hover .tech-shape {
+    background: var(--gradient-saffron);
+    border-color: var(--saffron);
+}
+
+.floating-tech span {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-medium);
+    background: var(--bg-glass);
+    padding: 0.3rem 0.6rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+    backdrop-filter: blur(10px);
+}
+
+.tech-1 {
+    top: 20%;
+    left: 10%;
+    animation: float 8s ease-in-out infinite;
+}
+
+.tech-2 {
+    top: 10%;
+    right: 20%;
+    animation: float 9s ease-in-out infinite 1s;
+}
+
+.tech-3 {
+    bottom: 20%;
+    left: 15%;
+    animation: float 10s ease-in-out infinite 2s;
+}
+
+.tech-4 {
+    bottom: 10%;
+    right: 10%;
+    animation: float 7s ease-in-out infinite 3s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Career Path Visualization */
+.career-path-viz {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+    background: var(--bg-glass);
+    border-radius: 20px;
+    border: 1px solid var(--border-light);
+    backdrop-filter: blur(20px);
+    margin-top: 2rem;
+}
+
+.path-start {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.path-dot {
+    width: 16px;
+    height: 16px;
+    background: var(--gradient-saffron);
+    border-radius: 50%;
+    animation: dot-pulse 2s infinite;
+}
+
+@keyframes dot-pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.7);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 10px rgba(255, 107, 53, 0);
+    }
+}
+
+.path-start span {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-medium);
+}
+
+.path-line {
+    flex: 1;
+    height: 3px;
+    background: var(--border-light);
+    margin: 0 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.path-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: var(--gradient-saffron);
+    animation: progress-move 4s ease-in-out infinite;
+}
+
+@keyframes progress-move {
+    0% {
+        width: 0%;
+        left: 0;
+    }
+    50% {
+        width: 100%;
+        left: 0;
+    }
+    100% {
+        width: 0%;
+        left: 100%;
+    }
+}
+
+.path-milestones {
+    display: flex;
+    gap: 2rem;
+}
+
+.milestone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.milestone.active {
+    opacity: 1;
+}
+
+.milestone-dot {
+    width: 12px;
+    height: 12px;
+    background: var(--border-light);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.milestone.active .milestone-dot {
+    background: var(--gradient-saffron);
+    box-shadow: 0 0 10px var(--saffron-glow);
+}
+
+.milestone-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Milestone Animation */
+.milestone:nth-child(1) { animation: milestone-glow 4s infinite; }
+.milestone:nth-child(2) { animation: milestone-glow 4s infinite 1s; }
+.milestone:nth-child(3) { animation: milestone-glow 4s infinite 2s; }
+.milestone:nth-child(4) { animation: milestone-glow 4s infinite 3s; }
+
+@keyframes milestone-glow {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .careers-hero-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+    }
+    
+    .careers-visual {
+        height: 400px;
+    }
+    
+    .tech-ecosystem {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .orbit-1 { width: 150px; height: 150px; }
+    .orbit-2 { width: 200px; height: 200px; }
+    .orbit-3 { width: 250px; height: 250px; }
+    .orbit-4 { width: 300px; height: 300px; }
+    
+    .career-path-viz {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+    
+    .path-line {
+        width: 3px;
+        height: 100px;
+        margin: 1rem 0;
+    }
+    
+    .path-progress {
+        width: 100%;
+        height: 0%;
+        animation: progress-move-vertical 4s ease-in-out infinite;
+    }
+    
+    @keyframes progress-move-vertical {
+        0% {
+            height: 0%;
+            top: 0;
+        }
+        50% {
+            height: 100%;
+            top: 0;
+        }
+        100% {
+            height: 0%;
+            top: 100%;
+        }
+    }
+    
+    .path-milestones {
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .tech-ecosystem {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .orbit-1 { width: 120px; height: 120px; }
+    .orbit-2 { width: 160px; height: 160px; }
+    .orbit-3 { width: 200px; height: 200px; }
+    .orbit-4 { width: 240px; height: 240px; }
+    
+    .node-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .hub-core {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Liquid Glass Background -->
+    <div class="liquid-bg">
+        <div class="glass-layer-1"></div>
+        <div class="glass-layer-2"></div>
+        <div class="floating-blobs">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+            <div class="blob blob-4"></div>
+        </div>
+    </div>
+
+    <!-- Animated Particles -->
+    <div class="particles-container" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Ionix Technologies" class="logo-image">
+                <span class="logo-text">Ionix Technologies</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="work.html" class="nav-link">Our Work</a></li>
+                <li><a href="careers.html" class="nav-link active">Careers</a></li>
+                <li><a href="blog.html" class="nav-link">Blog</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <a href="index.html#contact" class="cta-btn glow-btn">
+                <span>Start Project</span>
+                <div class="btn-shine"></div>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Careers Hero Section -->
+<!-- Add this to your careers page HTML, replacing the current hero section -->
+<section class="careers-hero">
+    <div class="container">
+        <div class="careers-hero-grid">
+            <!-- Left side content -->
+            <div class="careers-hero-content">
+                <div class="hero-badge">
+                    <div class="pulse-dot"></div>
+                    Join Our Team
+                </div>
+                <h1 class="careers-hero-title">
+                    Build the Future with <span class="gradient-text">Ionix</span>
+                </h1>
+                <p class="careers-hero-description">
+                    We're not just building products—we're shaping the future of technology. Join a team of passionate innovators dedicated to creating exceptional digital experiences.
+                </p>
+            </div>
+            
+            <!-- Right side innovative design -->
+            <div class="careers-visual">
+                <!-- Animated Tech Ecosystem -->
+                <div class="tech-ecosystem">
+                    <!-- Central Innovation Hub -->
+                    <div class="innovation-hub">
+                        <div class="hub-core">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="hub-glow"></div>
+                    </div>
+                    
+                    <!-- Orbiting Talent Nodes -->
+                    <div class="talent-orbit orbit-1">
+                        <div class="talent-node">
+                            <div class="node-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="node-glow"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="talent-orbit orbit-2">
+                        <div class="talent-node">
+                            <div class="node-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <div class="node-glow"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="talent-orbit orbit-3">
+                        <div class="talent-node">
+                            <div class="node-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="node-glow"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="talent-orbit orbit-4">
+                        <div class="talent-node">
+                            <div class="node-icon">
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                            <div class="node-glow"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Connection Paths -->
+                    <div class="connection-path path-1"></div>
+                    <div class="connection-path path-2"></div>
+                    <div class="connection-path path-3"></div>
+                    <div class="connection-path path-4"></div>
+                    
+                    <!-- Floating Tech Elements -->
+                    <div class="floating-tech tech-1">
+                        <div class="tech-shape"></div>
+                        <span>AI</span>
+                    </div>
+                    <div class="floating-tech tech-2">
+                        <div class="tech-shape"></div>
+                        <span>Cloud</span>
+                    </div>
+                    <div class="floating-tech tech-3">
+                        <div class="tech-shape"></div>
+                        <span>Web3</span>
+                    </div>
+                    <div class="floating-tech tech-4">
+                        <div class="tech-shape"></div>
+                        <span>IoT</span>
+                    </div>
+                </div>
+                
+                <!-- Career Path Visualization -->
+                <div class="career-path-viz">
+                    <div class="path-start">
+                        <div class="path-dot"></div>
+                        <span>Your Journey</span>
+                    </div>
+                    <div class="path-line">
+                        <div class="path-progress"></div>
+                    </div>
+                    <div class="path-milestones">
+                        <div class="milestone" data-step="1">
+                            <div class="milestone-dot"></div>
+                            <div class="milestone-label">Learn</div>
+                        </div>
+                        <div class="milestone" data-step="2">
+                            <div class="milestone-dot"></div>
+                            <div class="milestone-label">Grow</div>
+                        </div>
+                        <div class="milestone" data-step="3">
+                            <div class="milestone-dot"></div>
+                            <div class="milestone-label">Innovate</div>
+                        </div>
+                        <div class="milestone" data-step="4">
+                            <div class="milestone-dot"></div>
+                            <div class="milestone-label">Lead</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Culture Section -->
+    <section class="culture-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Our Culture</div>
+                <h2>Where Innovation <span class="gradient-text">Thrives</span></h2>
+                <p>A collaborative environment that fosters creativity and growth</p>
+            </div>
+
+            <div class="culture-grid">
+                <div class="culture-card">
+                    <div class="culture-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovation First</h3>
+                    <p>We encourage bold ideas and experimentation. Every team member has a voice in shaping our products and processes.</p>
+                </div>
+
+                <div class="culture-card">
+                    <div class="culture-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Collaborative Spirit</h3>
+                    <p>Cross-functional teamwork is at our core. We believe the best solutions emerge when diverse perspectives come together.</p>
+                </div>
+
+                <div class="culture-card">
+                    <div class="culture-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Growth Mindset</h3>
+                    <p>Continuous learning is part of our DNA. We invest in our team's development through training, mentorship, and challenging projects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Our Values</div>
+                <h2>The Principles That <span class="gradient-text">Guide Us</span></h2>
+                <p>These core values shape everything we do</p>
+            </div>
+
+            <div class="values-container">
+                <div class="values-grid">
+                    <div class="value-item">
+                        <div class="value-number">01</div>
+                        <h3>Excellence</h3>
+                        <p>We strive for exceptional quality in everything we build, paying attention to both technical excellence and user experience.</p>
+                    </div>
+
+                    <div class="value-item">
+                        <div class="value-number">02</div>
+                        <h3>Integrity</h3>
+                        <p>We believe in transparency, honesty, and doing the right thing—even when no one is watching.</p>
+                    </div>
+
+                    <div class="value-item">
+                        <div class="value-number">03</div>
+                        <h3>Innovation</h3>
+                        <p>We embrace change and continuously explore new technologies and approaches to solve complex problems.</p>
+                    </div>
+
+                    <div class="value-item">
+                        <div class="value-number">04</div>
+                        <h3>Collaboration</h3>
+                        <p>We work together across disciplines, valuing diverse perspectives and shared success over individual achievements.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Why Join Us</div>
+                <h2>Benefits That <span class="gradient-text">Matter</span></h2>
+                <p>We invest in our team's well-being and professional growth</p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Health & Wellness</h3>
+                        <p>Comprehensive health insurance, gym memberships, and wellness programs to keep you at your best.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Learning & Development</h3>
+                        <p>Annual learning budget, conference attendance, and access to premium online courses and resources.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Flexible Work</h3>
+                        <p>Hybrid work model with flexible hours and the option to work remotely when needed.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Team Nutrition</h3>
+                        <p>Healthy snacks, catered lunches, and fully stocked kitchen to keep you energized throughout the day.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Time Off</h3>
+                        <p>Generous paid time off, parental leave, and flexible holidays to maintain work-life balance.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Tools & Equipment</h3>
+                        <p>Latest technology and equipment to ensure you have everything needed to do your best work.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- No Current Openings Section -->
+    <section class="openings-section">
+        <div class="container">
+            <div class="openings-card">
+                <div class="openings-glow"></div>
+                <div class="openings-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h2 class="openings-title">No Current Openings</h2>
+                <p class="openings-description">
+                    We're not actively hiring at the moment, but we're always interested in connecting with exceptional talent. Great opportunities may become available soon!
+                </p>
+                <a href="#talent-network" class="btn btn-primary btn-large">
+                    <span>Join Our Talent Network</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Talent Network Section -->
+    <section class="talent-network" id="talent-network">
+        <div class="container">
+            <div class="network-card">
+                <h2 class="network-title">Stay in Touch</h2>
+                <p class="network-description">
+                    Join our talent network to be the first to know about future opportunities at Ionix Technologies.
+                </p>
+                <form class="network-form">
+                    <div class="form-row">
+                        <input type="text" class="form-input" placeholder="First Name" required>
+                        <input type="text" class="form-input" placeholder="Last Name" required>
+                    </div>
+                    <div class="form-row">
+                        <input type="email" class="form-input full-width" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-row">
+                        <input type="text" class="form-input" placeholder="Current Role">
+                        <input type="text" class="form-input" placeholder="Expertise Area">
+                    </div>
+                    <div class="form-row">
+                        <textarea class="form-input full-width form-textarea" placeholder="Tell us about your interests and what you're looking for in your next role..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Join Talent Network</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="Ionix Technologies" class="logo-image">
+                        <span>Ionix Technologies</span>
+                    </div>
+                    <p>Building the future with innovative digital solutions and cutting-edge technology since 2022.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">GitHub</a>
+                        <a href="#" class="social-link">LinkedIn</a>
+                        <a href="#" class="social-link">Twitter</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="index.html#services">Web Development</a>
+                    <a href="index.html#services">Mobile App Development</a>
+                    <a href="index.html#services">AI & Machine Learning</a>
+                    <a href="index.html#services">Cloud Services</a>
+                    <a href="index.html#services">Edge Computing & IoT</a>
+                    <a href="index.html#services">DevOps & DevSecOps</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <a href="about.html">About Us</a>
+                    <a href="work.html">Our Work</a>
+                    <a href="careers.html" class="active">Careers</a>
+                    <a href="blog.html">Blog</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <a href="mailto:hello@ionixtech.dev">hello@ionixtech.dev</a>
+                    <a href="tel:+1234567890">+1 (234) 567-890</a>
+                    <a href="index.html#contact">Schedule Call</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Ionix Technologies. Crafted with innovation and precision.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Reuse the same JavaScript from main site
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Create particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 30;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = Math.random() * 100 + 'vh';
+
+                const size = Math.random() * 4 + 1;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+
+                particle.style.animationDelay = Math.random() * 20 + 's';
+
+                container.appendChild(particle);
+            }
+        }
+
+        // Form submission handling
+        function setupForm() {
+            const form = document.querySelector('.network-form');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(form);
+                const firstName = form.querySelector('input[placeholder="First Name"]').value;
+                
+                // Show success message (in a real implementation, you would send this to a server)
+                alert(`Thank you ${firstName}! We've added you to our talent network and will contact you when opportunities matching your profile become available.`);
+                
+                // Reset form
+                form.reset();
+            });
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize when page loads
+        window.addEventListener('load', () => {
+            createParticles();
+            setupForm();
+        });
+
+        // Add hover effects
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-2px) scale(1.02)';
+            });
+
+            btn.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        console.log('Ionix Technologies - Careers Page Loaded!');
+    </script>
+</body>
+</html>

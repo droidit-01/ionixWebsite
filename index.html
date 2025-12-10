@@ -1,813 +1,1100 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ionix Technologies - Elite Development Solutions</title>
-	            <!-- --saffron: #c6613f; -->
-            <!-- --dark-saffron: #a34f2f; -->
-            <!-- --deep-saffron: #8a3f22; -->
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-
-			    --saffron: #ec6b40;
-    --dark-saffron: #ff895c;
-    --deep-saffron: #ac5837;
-			
-            --bg-light: #FFFFFF;
-            --bg-secondary: #F8F9FA;
-            --text-dark: #1a1a1a;
-            --text-medium: #4a4a4a;
-            --text-light: #6a6a6a;
-            --accent-glow: rgba(198, 97, 63, 0.15);
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg-light);
-            color: var(--text-dark);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* Animated gradient background */
-        .bg-gradient {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 50%, var(--accent-glow) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(198, 97, 63, 0.08) 0%, transparent 50%),
-                var(--bg-light);
-            z-index: -1;
-            animation: gradientShift 15s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
-        }
-
-        /* Tech Icons Pattern */
-        .tech-icons {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0.06;
-            pointer-events: none;
-        }
-
-        .tech-icon {
-            position: absolute;
-            font-size: 2.5rem;
-            color: var(--saffron);
-            animation: floatIcon 20s infinite ease-in-out;
-            opacity: 0.5;
-        }
-
-        .tech-icon:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
-        .tech-icon:nth-child(2) { top: 20%; right: 8%; animation-delay: 2s; }
-        .tech-icon:nth-child(3) { top: 40%; left: 15%; animation-delay: 4s; }
-        .tech-icon:nth-child(4) { top: 60%; right: 20%; animation-delay: 1s; }
-        .tech-icon:nth-child(5) { top: 80%; left: 10%; animation-delay: 3s; }
-        .tech-icon:nth-child(6) { top: 15%; left: 50%; animation-delay: 5s; }
-        .tech-icon:nth-child(7) { top: 50%; right: 5%; animation-delay: 2.5s; }
-        .tech-icon:nth-child(8) { top: 70%; left: 40%; animation-delay: 1.5s; }
-        .tech-icon:nth-child(9) { top: 30%; right: 30%; animation-delay: 4.5s; }
-        .tech-icon:nth-child(10) { top: 85%; right: 15%; animation-delay: 3.5s; }
-
-        @keyframes floatIcon {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 0.3;
-            }
-            50% {
-                transform: translateY(-30px) rotate(5deg);
-                opacity: 0.6;
-            }
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem 5%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(198, 97, 63, 0.1);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            padding: 1rem 5%;
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--saffron), var(--dark-saffron));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -0.5px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-medium);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--saffron);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--saffron);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .cta-btn {
-            background: linear-gradient(135deg, var(--saffron), var(--dark-saffron));
-            color: white;
-            padding: 0.75rem 1.8rem;
-            border-radius: 50px;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(198, 97, 63, 0.3);
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(198, 97, 63, 0.5);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 8rem 5% 4rem;
-        }
-
-        .hero-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        .hero-content {
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            padding: 0.5rem 1.5rem;
-            background: rgba(198, 97, 63, 0.1);
-            border: 1px solid rgba(198, 97, 63, 0.2);
-            border-radius: 50px;
-            color: var(--saffron);
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            animation: fadeInDown 0.8s ease;
-        }
-
-        .hero h1 {
-            font-size: 4.5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            color: var(--text-dark);
-            animation: fadeInUp 0.8s ease 0.2s backwards;
-        }
-
-        .hero h1 .gradient-text {
-            background: linear-gradient(135deg, var(--saffron), var(--dark-saffron));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-description {
-            font-size: 1.3rem;
-            color: var(--text-medium);
-            margin-bottom: 3rem;
-            line-height: 1.8;
-            animation: fadeInUp 0.8s ease 0.4s backwards;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeInUp 0.8s ease 0.6s backwards;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--saffron), var(--dark-saffron));
-            color: white;
-            padding: 1.2rem 3rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(198, 97, 63, 0.4);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(198, 97, 63, 0.6);
-        }
-
-        .btn-secondary {
-            background: white;
-            color: var(--saffron);
-            padding: 1.2rem 3rem;
-            border: 2px solid var(--saffron);
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-secondary:hover {
-            background: var(--saffron);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Services Section */
-        .services {
-            padding: 6rem 5%;
-            background: var(--bg-secondary);
-        }
-
-        .services-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-badge {
-            display: inline-block;
-            padding: 0.5rem 1.5rem;
-            background: rgba(198, 97, 63, 0.1);
-            border: 1px solid rgba(198, 97, 63, 0.2);
-            border-radius: 50px;
-            color: var(--saffron);
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .section-header h2 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-        }
-
-        .section-header h2 .gradient-text {
-            background: linear-gradient(135deg, var(--saffron), var(--dark-saffron));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .section-header p {
-            font-size: 1.2rem;
-            color: var(--text-medium);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: white;
-            border: 1px solid rgba(198, 97, 63, 0.1);
-            border-radius: 20px;
-            padding: 2.5rem;
-            transition: all 0.4s ease;
-            cursor: pointer;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--saffron);
-            box-shadow: 0 20px 60px rgba(198, 97, 63, 0.15);
-        }
-
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--saffron), var(--dark-saffron));
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 15px rgba(198, 97, 63, 0.3);
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-        }
-
-        .service-card p {
-            color: var(--text-medium);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-features {
-            list-style: none;
-        }
-
-        .service-features li {
-            padding: 0.5rem 0;
-            color: var(--text-medium);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.95rem;
-        }
-
-        .service-features li::before {
-            content: '→';
-            color: var(--saffron);
-            font-weight: bold;
-        }
-
-        /* Stats Section */
-        .stats {
-            padding: 6rem 5%;
-            background: white;
-        }
-
-        .stats-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem;
-            border-radius: 20px;
-            background: var(--bg-secondary);
-            transition: all 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(198, 97, 63, 0.1);
-        }
-
-        .stat-number {
-            font-size: 3.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--saffron), var(--dark-saffron));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            color: var(--text-medium);
-            font-weight: 500;
-        }
-
-        /* Technologies Section */
-        .technologies {
-            padding: 6rem 5%;
-            background: var(--bg-secondary);
-        }
-
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 3rem auto 0;
-        }
-
-        .tech-item {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(198, 97, 63, 0.1);
-        }
-
-        .tech-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--saffron);
-            box-shadow: 0 10px 30px rgba(198, 97, 63, 0.15);
-        }
-
-        .tech-item-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .tech-item-name {
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        /* CTA Section */
-        .cta-section {
-            padding: 8rem 5%;
-            background: white;
-            text-align: center;
-        }
-
-        .cta-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .cta-section h2 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-dark);
-        }
-
-        .cta-section h2 .gradient-text {
-            background: linear-gradient(135deg, var(--saffron), var(--dark-saffron));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .cta-section p {
-            font-size: 1.3rem;
-            color: var(--text-medium);
-            margin-bottom: 3rem;
-            line-height: 1.8;
-        }
-
-        /* Footer */
-        footer {
-            padding: 4rem 5% 2rem;
-            background: var(--bg-secondary);
-            border-top: 1px solid rgba(198, 97, 63, 0.1);
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-section h3 {
-            color: var(--saffron);
-            margin-bottom: 1.5rem;
-            font-size: 1.3rem;
-        }
-
-        .footer-section p, .footer-section a {
-            color: var(--text-medium);
-            text-decoration: none;
-            display: block;
-            margin-bottom: 0.8rem;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section a:hover {
-            color: var(--saffron);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(198, 97, 63, 0.1);
-            color: var(--text-medium);
-        }
-
-        /* Responsive */
-        @media (max-width: 968px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section-header h2 {
-                font-size: 2.5rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
-    <div class="bg-gradient">
-        <div class="tech-icons">
-            <div class="tech-icon">⚛️</div>
-            <div class="tech-icon">📱</div>
-            <div class="tech-icon">🔧</div>
-            <div class="tech-icon">☁️</div>
-            <div class="tech-icon">🔌</div>
-            <div class="tech-icon">💻</div>
-            <div class="tech-icon">🚀</div>
-            <div class="tech-icon">⚡</div>
-            <div class="tech-icon">🌐</div>
-            <div class="tech-icon">🛠️</div>
+    <!-- Liquid Glass Background -->
+    <div class="liquid-bg">
+        <div class="glass-layer-1"></div>
+        <div class="glass-layer-2"></div>
+        <div class="floating-blobs">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+            <div class="blob blob-4"></div>
         </div>
     </div>
 
+    <!-- Animated Particles -->
+    <div class="particles-container" id="particles"></div>
+
+    <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
-            <div class="logo">Ionix Technologies</div>
+            <div class="logo">
+                <img src="images/logo.png" alt="Ionix Technologies" class="logo-image">
+                <span class="logo-text">Ionix Technologies</span>
+            </div>
             <ul class="nav-links">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#technologies">Technologies</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#technologies" class="nav-link">Technologies</a></li>
+                <li><a href="#work" class="nav-link">Work</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
-            <button class="cta-btn">Start Project</button>
+            <button class="cta-btn glow-btn">
+                <span>Start Project</span>
+                <div class="btn-shine"></div>
+            </button>
         </div>
     </nav>
 
+    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-container">
             <div class="hero-content">
-                <div class="hero-badge">🚀 Direct to Developers</div>
-                <h1>
-                    Build The Future with <br>
-                    <span class="gradient-text">Ionix Technologies</span>
+                <div class="hero-badge">
+                    <div class="pulse-dot"></div>
+                    Premium Development Agency
+                </div>
+                <h1 class="hero-title">
+                    <span class="title-line">Building Digital</span>
+                    <span class="title-line highlight-line">
+                        <span class="gradient-text">Excellence</span>
+                        <div class="text-glow"></div>
+                    </span>
+                    <span class="title-line">With Innovation</span>
                 </h1>
                 <p class="hero-description">
-                    We craft cutting-edge web applications, mobile solutions, IoT systems, and developer utilities that transform businesses and empower innovation.
+                    We transform visionary ideas into exceptional digital experiences.
+                    From enterprise web applications to cutting-edge mobile solutions,
+                    we deliver technology that drives business success.
                 </p>
                 <div class="hero-buttons">
-                    <a href="#services" class="btn-primary">
-                        Explore Services →
+                    <a href="#services" class="btn btn-primary">
+                        <span>Explore Services</span>
+                        <div class="btn-sparkle">🚀</div>
                     </a>
-                    <a href="#contact" class="btn-secondary">
-                        Let's Connect
+                    <a href="#contact" class="btn btn-secondary">
+                        <span>Get In Touch</span>
+                        <div class="btn-arrow">→</div>
                     </a>
                 </div>
+                <!-- In Hero Section - Change to hero-stat-number -->
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="hero-stat-number" data-count="150">0</div>
+                        <div class="stat-label">Projects Delivered</div>
+                    </div>
+                    <div class="stat">
+                        <div class="hero-stat-number" data-count="98">0</div>
+                        <div class="stat-label">Client Satisfaction</div>
+                    </div>
+                    <div class="stat">
+                        <div class="hero-stat-number" data-count="5">0</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <!-- Modern Code Visualization -->
+                <div class="code-window">
+                    <div class="window-header">
+                        <div class="window-controls">
+                            <div class="control close"></div>
+                            <div class="control minimize"></div>
+                            <div class="control maximize"></div>
+                        </div>
+                        <div class="window-title">dashboard.jsx</div>
+                    </div>
+                    <div class="code-content">
+                        <div class="code-line">
+                            <span class="line-number">1</span>
+                            <span class="code-keyword">import</span> { Innovation, Excellence }
+                            <span class="code-string">'@ionix/core'</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">2</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">3</span>
+                            <span class="code-keyword">export default</span>
+                            <span class="code-function">DigitalTransformation</span>() {
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">4</span>
+                            &nbsp;&nbsp;<span class="code-keyword">return</span> (
+                        </div>
+                        <div class="code-line highlight">
+                            <span class="line-number">5</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="code-tag">Solution</span>
+                            <span class="code-attr">impact</span>=<span class="code-string">"transformative"</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">6</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-attr">innovation</span>=<span
+                                class="code-string">"cutting-edge"</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">7</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-attr">results</span>=<span
+                                class="code-string">"measurable"</span> /&gt;
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">8</span>
+                            &nbsp;&nbsp;)
+                        </div>
+                        <div class="code-line">
+                            <span class="line-number">9</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Floating Tech Elements -->
+                <div class="tech-element element-1">
+                    <div class="element-shape"></div>
+                    <span>AI Powered</span>
+                </div>
+                <div class="tech-element element-2">
+                    <div class="element-shape"></div>
+                    <span>Cloud Native</span>
+                </div>
+                <div class="tech-element element-3">
+                    <div class="element-shape"></div>
+                    <span>Real-time</span>
+                </div>
+
+                <!-- Connection Lines -->
+                <div class="connection-line line-1"></div>
+                <div class="connection-line line-2"></div>
+                <div class="connection-line line-3"></div>
             </div>
         </div>
     </section>
 
+    <!-- Services Section -->
     <section class="services" id="services">
-        <div class="services-container">
+        <div class="container">
             <div class="section-header">
-                <div class="section-badge">What We Do</div>
-                <h2>Our <span class="gradient-text">Core Expertise</span></h2>
-                <p>Comprehensive development solutions tailored for modern businesses</p>
+                <div class="section-badge">Our Services</div>
+                <h2>Comprehensive <span class="gradient-text">Digital Solutions</span></h2>
+                <p>End-to-end technology services to transform your business</p>
+                <p> </p>
             </div>
             <div class="services-grid">
+                <!-- Web Development -->
                 <div class="service-card">
-                    <div class="service-icon">🌐</div>
-                    <h3>Web Applications</h3>
-                    <p>Scalable, responsive web applications built with modern frameworks and cloud-native architecture.</p>
-                    <ul class="service-features">
-                        <li>Progressive Web Apps (PWA)</li>
-                        <li>Real-time Collaboration Tools</li>
-                        <li>API-First Development</li>
-                        <li>Cloud-Native Solutions</li>
-                    </ul>
+                    <div class="card-header">
+                        <div class="service-icon">
+                            <i class="fas fa-code"></i>
+                            <div class="icon-bg web-bg"></div>
+                        </div>
+                        <h3>Web Development</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Modern, scalable web applications built with cutting-edge frameworks and cloud-native
+                            architecture.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-rocket"></i> Progressive Web Apps (PWA)</li>
+                            <li><i class="fas fa-bolt"></i> Real-time Applications</li>
+                            <li><i class="fas fa-shopping-cart"></i> E-commerce Solutions</li>
+                            <li><i class="fas fa-plug"></i> API-First Development</li>
+                        </ul>
+                    </div>
+                    <div class="card-glow"></div>
                 </div>
 
+                <!-- Mobile App Development -->
                 <div class="service-card">
-                    <div class="service-icon">📱</div>
-                    <h3>Mobile Development</h3>
-                    <p>Native and cross-platform mobile apps that deliver exceptional experiences on iOS and Android.</p>
-                    <ul class="service-features">
-                        <li>React Native & Flutter</li>
-                        <li>Native iOS & Android</li>
-                        <li>Offline-First Architecture</li>
-                        <li>Push Notifications</li>
-                    </ul>
+                    <div class="card-header">
+                        <div class="service-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                            <div class="icon-bg mobile-bg"></div>
+                        </div>
+                        <h3>Mobile App Development</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Native and cross-platform mobile experiences that engage users and drive business growth.</p>
+                        <ul class="service-features">
+                            <li><i class="fab fa-apple"></i> iOS & Android Native</li>
+                            <li><i class="fas fa-layer-group"></i> React Native & Flutter</li>
+                            <li><i class="fas fa-wifi-slash"></i> Offline-First Architecture</li>
+                            <li><i class="fas fa-chart-line"></i> App Store Optimization</li>
+                        </ul>
+                    </div>
+                    <div class="card-glow"></div>
                 </div>
 
+                <!-- AI/ML -->
                 <div class="service-card">
-                    <div class="service-icon">🔌</div>
-                    <h3>IoT Solutions</h3>
-                    <p>Connected device ecosystems with edge computing and intelligent automation capabilities.</p>
-                    <ul class="service-features">
-                        <li>Device Management Platforms</li>
-                        <li>Real-Time Data Analytics</li>
-                        <li>Edge Computing Solutions</li>
-                        <li>Hardware Integration</li>
-                    </ul>
+                    <div class="card-header">
+                        <div class="service-icon">
+                            <i class="fas fa-brain"></i>
+                            <div class="icon-bg ai-bg"></div>
+                        </div>
+                        <h3>AI & Machine Learning</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Intelligent solutions that leverage artificial intelligence to transform business operations.
+                        </p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-robot"></i> Generative AI Solutions</li>
+                            <li><i class="fas fa-chart-bar"></i> Predictive Analytics</li>
+                            <li><i class="fas fa-cogs"></i> MLOps & Model Deployment</li>
+                            <li><i class="fas fa-eye"></i> Computer Vision & NLP</li>
+                        </ul>
+                    </div>
+                    <div class="card-glow"></div>
                 </div>
 
+                <!-- Cloud Services -->
                 <div class="service-card">
-                    <div class="service-icon">🛠️</div>
-                    <h3>Developer Utilities</h3>
-                    <p>Powerful tools and libraries that accelerate workflows and improve code quality.</p>
-                    <ul class="service-features">
-                        <li>CLI Tools & Automation</li>
-                        <li>SDK Development</li>
-                        <li>API Wrappers & Libraries</li>
-                        <li>Developer Documentation</li>
-                    </ul>
+                    <div class="card-header">
+                        <div class="service-icon">
+                            <i class="fas fa-cloud"></i>
+                            <div class="icon-bg cloud-bg"></div>
+                        </div>
+                        <h3>Cloud Services</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Scalable cloud infrastructure and migration services for modern enterprise needs.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-sync-alt"></i> Cloud Migration & Strategy</li>
+                            <li><i class="fas fa-network-wired"></i> Multi-cloud Architecture</li>
+                            <li><i class="fas fa-bolt"></i> Serverless Computing</li>
+                            <li><i class="fab fa-docker"></i> Kubernetes & Docker</li>
+                        </ul>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+
+                <!-- Edge Computing / IoT -->
+                <div class="service-card">
+                    <div class="card-header">
+                        <div class="service-icon">
+                            <i class="fas fa-microchip"></i>
+                            <div class="icon-bg iot-bg"></div>
+                        </div>
+                        <h3>Edge Computing & IoT</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Connected solutions that bridge physical and digital worlds through smart technology.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-server"></i> Edge Compute Architecture</li>
+                            <li><i class="fas fa-satellite-dish"></i> IoT Device Development</li>
+                            <li><i class="fas fa-robot"></i> AI + IoT Integration</li>
+                            <li><i class="fas fa-tools"></i> Predictive Maintenance</li>
+                        </ul>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+
+                <!-- DevOps / DevSecOps -->
+                <div class="service-card">
+                    <div class="card-header">
+                        <div class="service-icon">
+                            <i class="fas fa-cogs"></i>
+                            <div class="icon-bg devops-bg"></div>
+                        </div>
+                        <h3>DevOps & DevSecOps</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Streamlined development workflows with integrated security and reliability engineering.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-code-branch"></i> Infrastructure as Code</li>
+                            <li><i class="fas fa-tachometer-alt"></i> CI/CD Pipeline Implementation</li>
+                            <li><i class="fas fa-shield-alt"></i> Security Integration</li>
+                            <li><i class="fas fa-heartbeat"></i> SRE Practices</li>
+                        </ul>
+                    </div>
+                    <div class="card-glow"></div>
                 </div>
             </div>
+
+
+            <!-- Service Stats -->
+            <div class="service-stats">
+                <div class="stats-item">
+                    <div class="stats-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="stats-content">
+                        <div class="stats-number">99.9%</div>
+                        <div class="stats-label">Uptime Guarantee</div>
+                    </div>
+                </div>
+                <div class="stats-item">
+                    <div class="stats-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <div class="stats-content">
+                        <div class="stats-number">2x</div>
+                        <div class="stats-label">Faster Deployment</div>
+                    </div>
+                </div>
+                <div class="stats-item">
+                    <div class="stats-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="stats-content">
+                        <div class="stats-number">24/7</div>
+                        <div class="stats-label">Security Monitoring</div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <section class="stats">
-        <div class="stats-container">
-            <div class="stat-item">
-                <div class="stat-number">500+</div>
-                <div class="stat-label">Projects Delivered</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">98%</div>
-                <div class="stat-label">Client Satisfaction</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">50+</div>
-                <div class="stat-label">Developer Partners</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">24/7</div>
-                <div class="stat-label">Support Available</div>
-            </div>
-        </div>
-    </section>
 
+
+
+    <!-- Technologies Section -->
     <section class="technologies" id="technologies">
-        <div class="services-container">
+        <div class="container">
             <div class="section-header">
                 <div class="section-badge">Tech Stack</div>
                 <h2>Technologies We <span class="gradient-text">Master</span></h2>
-                <p>Industry-leading tools and frameworks for modern development</p>
+                <p>Cutting-edge tools and frameworks powering innovative solutions</p>
             </div>
-            <div class="tech-grid">
-                <div class="tech-item">
-                    <div class="tech-item-icon">⚛️</div>
-                    <div class="tech-item-name">React</div>
+
+            <!-- Tech Categories Grid -->
+            <div class="tech-categories">
+                <!-- AI/ML -->
+                <div class="tech-category">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>AI/ML</h3>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">TensorFlow</span>
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">OpenAI</span>
+                        <span class="tech-tag">LangChain</span>
+                    </div>
                 </div>
-                <div class="tech-item">
-                    <div class="tech-item-icon">📱</div>
-                    <div class="tech-item-name">React Native</div>
+
+                <!-- Cloud -->
+                <div class="tech-category">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3>Cloud</h3>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">AWS</span>
+                        <span class="tech-tag">Azure</span>
+                        <span class="tech-tag">GCP</span>
+                        <span class="tech-tag">Kubernetes</span>
+                        <span class="tech-tag">Docker</span>
+                    </div>
                 </div>
-                <div class="tech-item">
-                    <div class="tech-item-icon">🟢</div>
-                    <div class="tech-item-name">Node.js</div>
+
+                <!-- Cybersecurity -->
+                <div class="tech-category">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Cybersecurity</h3>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Zero Trust</span>
+                        <span class="tech-tag">SIEM Tools</span>
+                        <span class="tech-tag">Pentesting</span>
+                    </div>
                 </div>
-                <div class="tech-item">
-                    <div class="tech-item-icon">🐍</div>
-                    <div class="tech-item-name">Python</div>
+
+                <!-- Web -->
+                <div class="tech-category">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Web</h3>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">WordPress</span>
+                        <span class="tech-tag">Shopify</span>
+                        <span class="tech-tag">React.js</span>
+                        <span class="tech-tag">Next.js</span>
+                        <span class="tech-tag">Node.js</span>
+                    </div>
                 </div>
-                <div class="tech-item">
-                    <div class="tech-item-icon">☁️</div>
-                    <div class="tech-item-name">AWS</div>
+
+                <!-- Mobile -->
+                <div class="tech-category">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Mobile</h3>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Flutter</span>
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">Android</span>
+                        <span class="tech-tag">IOS</span>
+                    </div>
                 </div>
-                <div class="tech-item">
-                    <div class="tech-item-icon">🔷</div>
-                    <div class="tech-item-name">Docker</div>
+
+                <!-- Backend -->
+                <div class="tech-category">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3>Backend</h3>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Django</span>
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">Spring Boot</span>
+                        <span class="tech-tag">NestJS</span>
+                    </div>
                 </div>
-                <div class="tech-item">
-                    <div class="tech-item-icon">🔥</div>
-                    <div class="tech-item-name">Firebase</div>
+
+                <!-- Databases -->
+                <div class="tech-category">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3>Databases</h3>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">Redis</span>
+                    </div>
                 </div>
-                <div class="tech-item">
-                    <div class="tech-item-icon">💚</div>
-                    <div class="tech-item-name">MongoDB</div>
+
+                <!-- DevOps -->
+                <div class="tech-category">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3>DevOps</h3>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Terraform</span>
+                        <span class="tech-tag">GitHub Actions</span>
+                        <span class="tech-tag">Jenkins</span>
+                        <span class="tech-tag">ArgoCD</span>
+                    </div>
+                </div>
+
+                <!-- IoT / Edge -->
+                <div class="tech-category">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <h3>IoT / Edge</h3>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">MQTT</span>
+                        <span class="tech-tag">AWS IoT</span>
+                        <span class="tech-tag">Raspberry Pi</span>
+                    </div>
+                </div>
+
+                <!-- Blockchain -->
+                <div class="tech-category">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <h3>Blockchain</h3>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Solidity</span>
+                        <span class="tech-tag">Hyperledger</span>
+                        <span class="tech-tag">Polygon</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Floating Tech Orbs Background -->
+            <div class="tech-orbs">
+                <div class="tech-orb orb-1"></div>
+                <div class="tech-orb orb-2"></div>
+                <div class="tech-orb orb-3"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Case Studies Section -->
+    <section class="case-studies" id="case-studies">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Case Studies</div>
+                <h2>Success Stories That <span class="gradient-text">Drive Results</span></h2>
+                <p>Real-world solutions delivering measurable impact for our clients</p>
+            </div>
+
+            <div class="case-studies-grid">
+                <!-- Case Study 1: AI Customer Support -->
+                <div class="case-study-card">
+                    <div class="case-study-image">
+                        <div class="image-placeholder ai-chatbot">
+                            <i class="fas fa-robot"></i>
+                            <div class="floating-chat">
+                                <div class="chat-bubble"></div>
+                                <div class="chat-bubble"></div>
+                                <div class="chat-bubble"></div>
+                            </div>
+                        </div>
+                        <div class="case-study-badge">AI/ML</div>
+                    </div>
+                    <div class="case-study-content">
+                        <h3>Intelligent Customer Support Automation</h3>
+                        <p class="case-study-description">
+                            Built an AI-powered customer service platform that reduced response times by 85% and
+                            increased customer satisfaction scores by 40%.
+                        </p>
+                        <div class="case-study-stats">
+                            <div class="stat">
+                                <div class="stat-number">85%</div>
+                                <div class="stat-label">Faster Response</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">40%</div>
+                                <div class="stat-label">Satisfaction Increase</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">24/7</div>
+                                <div class="stat-label">Support Coverage</div>
+                            </div>
+                        </div>
+                        <div class="case-study-tech">
+                            <span class="tech-tag">OpenAI GPT</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">AWS Lambda</span>
+                        </div>
+                        <div class="case-study-challenge">
+                            <h4>Challenge</h4>
+                            <p>E-commerce company struggling with 24/7 customer support and high response times during
+                                peak hours.</p>
+                        </div>
+                        <div class="case-study-solution">
+                            <h4>Solution</h4>
+                            <p>Developed a generative AI chatbot integrated with their existing CRM, capable of handling
+                                80% of common queries automatically.</p>
+                        </div>
+                        <button class="btn btn-outline">
+                            <span>View Full Case Study</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Case Study 2: Cloud Migration -->
+                <div class="case-study-card">
+                    <div class="case-study-image">
+                        <div class="image-placeholder cloud-migration">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <div class="server-cluster">
+                                <div class="server"></div>
+                                <div class="server"></div>
+                                <div class="server"></div>
+                            </div>
+                        </div>
+                        <div class="case-study-badge">Cloud</div>
+                    </div>
+                    <div class="case-study-content">
+                        <h3>Enterprise Cloud Migration & Modernization</h3>
+                        <p class="case-study-description">
+                            Migrated legacy ERP system to hybrid cloud architecture with containerized microservices,
+                            achieving 60% cost reduction.
+                        </p>
+                        <div class="case-study-stats">
+                            <div class="stat">
+                                <div class="stat-number">60%</div>
+                                <div class="stat-label">Cost Reduction</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">3x</div>
+                                <div class="stat-label">Performance</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">99.9%</div>
+                                <div class="stat-label">Uptime</div>
+                            </div>
+                        </div>
+                        <div class="case-study-tech">
+                            <span class="tech-tag">Kubernetes</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">AWS</span>
+                            <span class="tech-tag">Terraform</span>
+                        </div>
+                        <div class="case-study-challenge">
+                            <h4>Challenge</h4>
+                            <p>Manufacturing enterprise with outdated on-premise systems causing scalability issues and
+                                high maintenance costs.</p>
+                        </div>
+                        <div class="case-study-solution">
+                            <h4>Solution</h4>
+                            <p>Implemented cloud-native microservices architecture with automated scaling and disaster
+                                recovery capabilities.</p>
+                        </div>
+                        <button class="btn btn-outline">
+                            <span>View Full Case Study</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Case Study 3: IoT Predictive Maintenance -->
+                <div class="case-study-card">
+                    <div class="case-study-image">
+                        <div class="image-placeholder iot-maintenance">
+                            <i class="fas fa-cogs"></i>
+                            <div class="sensor-network">
+                                <div class="sensor"></div>
+                                <div class="sensor"></div>
+                                <div class="sensor"></div>
+                            </div>
+                        </div>
+                        <div class="case-study-badge">IoT</div>
+                    </div>
+                    <div class="case-study-content">
+                        <h3>Predictive Maintenance with IoT & AI</h3>
+                        <p class="case-study-description">
+                            Developed smart factory solution that predicts equipment failures with 95% accuracy,
+                            reducing downtime by 70%.
+                        </p>
+                        <div class="case-study-stats">
+                            <div class="stat">
+                                <div class="stat-number">95%</div>
+                                <div class="stat-label">Accuracy</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">70%</div>
+                                <div class="stat-label">Downtime Reduction</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">$2M</div>
+                                <div class="stat-label">Annual Savings</div>
+                            </div>
+                        </div>
+                        <div class="case-study-tech">
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">AWS IoT</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">MQTT</span>
+                        </div>
+                        <div class="case-study-challenge">
+                            <h4>Challenge</h4>
+                            <p>Industrial manufacturer facing unexpected equipment failures causing production delays
+                                and maintenance costs.</p>
+                        </div>
+                        <div class="case-study-solution">
+                            <h4>Solution</h4>
+                            <p>Deployed IoT sensors and machine learning models to monitor equipment health and predict
+                                maintenance needs.</p>
+                        </div>
+                        <button class="btn btn-outline">
+                            <span>View Full Case Study</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Case Study 4: Mobile Banking App -->
+                <div class="case-study-card">
+                    <div class="case-study-image">
+                        <div class="image-placeholder mobile-banking">
+                            <i class="fas fa-mobile-alt"></i>
+                            <div class="app-interface">
+                                <div class="app-screen"></div>
+                                <div class="app-screen"></div>
+                            </div>
+                        </div>
+                        <div class="case-study-badge">Mobile</div>
+                    </div>
+                    <div class="case-study-content">
+                        <h3>Secure Mobile Banking Platform</h3>
+                        <p class="case-study-description">
+                            Created a cross-platform mobile banking app with advanced security features, serving 500k+
+                            users with zero security incidents.
+                        </p>
+                        <div class="case-study-stats">
+                            <div class="stat">
+                                <div class="stat-number">500K+</div>
+                                <div class="stat-label">Users</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">4.8★</div>
+                                <div class="stat-label">App Store Rating</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">0</div>
+                                <div class="stat-label">Security Incidents</div>
+                            </div>
+                        </div>
+                        <div class="case-study-tech">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">Biometric Auth</span>
+                        </div>
+                        <div class="case-study-challenge">
+                            <h4>Challenge</h4>
+                            <p>Financial institution needed a secure, cross-platform mobile solution to compete with
+                                digital-only banks.</p>
+                        </div>
+                        <div class="case-study-solution">
+                            <h4>Solution</h4>
+                            <p>Built a feature-rich banking app with biometric authentication, real-time transactions,
+                                and robust security measures.</p>
+                        </div>
+                        <button class="btn btn-outline">
+                            <span>View Full Case Study</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose-us" id="why-choose-us">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Our Approach</div>
+                <h2>Why <span class="gradient-text">Choose Ionix</span> Technologies?</h2>
+                <p>We combine cutting-edge technology with proven methodologies to deliver exceptional results</p>
+            </div>
+
+            <div class="approach-grid">
+                <!-- Agile Methodology -->
+                <div class="approach-card">
+                    <div class="approach-icon">
+                        <div class="icon-container">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <div class="icon-glow"></div>
+                    </div>
+                    <h3>Agile Development</h3>
+                    <p>We follow iterative Agile methodologies to ensure rapid delivery, continuous improvement, and
+                        maximum flexibility throughout your project lifecycle.</p>
+                    <ul class="approach-features">
+                        <li><i class="fas fa-check"></i> Sprint-based development</li>
+                        <li><i class="fas fa-check"></i> Continuous feedback loops</li>
+                        <li><i class="fas fa-check"></i> Adaptive planning</li>
+                        <li><i class="fas fa-check"></i> Transparent progress tracking</li>
+                    </ul>
+                </div>
+
+                <!-- DevOps Excellence -->
+                <div class="approach-card">
+                    <div class="approach-icon">
+                        <div class="icon-container">
+                            <i class="fas fa-infinity"></i>
+                        </div>
+                        <div class="icon-glow"></div>
+                    </div>
+                    <h3>DevOps Excellence</h3>
+                    <p>Seamless integration of development and operations with automated CI/CD pipelines for faster,
+                        more reliable deployments.</p>
+                    <ul class="approach-features">
+                        <li><i class="fas fa-check"></i> Automated CI/CD pipelines</li>
+                        <li><i class="fas fa-check"></i> Infrastructure as Code</li>
+                        <li><i class="fas fa-check"></i> Continuous monitoring</li>
+                        <li><i class="fas fa-check"></i> Rapid deployment cycles</li>
+                    </ul>
+                </div>
+
+                <!-- Security First -->
+                <div class="approach-card">
+                    <div class="approach-icon">
+                        <div class="icon-container">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="icon-glow"></div>
+                    </div>
+                    <h3>Security-First Approach</h3>
+                    <p>Security is integrated into every phase of development, from initial design to deployment and
+                        maintenance.</p>
+                    <ul class="approach-features">
+                        <li><i class="fas fa-check"></i> DevSecOps integration</li>
+                        <li><i class="fas fa-check"></i> Regular security audits</li>
+                        <li><i class="fas fa-check"></i> Compliance adherence</li>
+                        <li><i class="fas fa-check"></i> Threat modeling</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- End-to-End Process -->
+            <div class="process-section">
+                <h3 class="process-title">End-to-End Development Process</h3>
+                <div class="process-timeline">
+                    <div class="process-step">
+                        <div class="step-number">01</div>
+                        <div class="step-content">
+                            <h4>Discovery & Consulting</h4>
+                            <p>In-depth analysis of your business needs, technical requirements, and project objectives
+                            </p>
+                            <ul class="step-features">
+                                <li>Requirements gathering</li>
+                                <li>Technical feasibility study</li>
+                                <li>Solution architecture design</li>
+                                <li>Project roadmap creation</li>
+                            </ul>
+                        </div>
+                        <div class="step-connector"></div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">02</div>
+                        <div class="step-content">
+                            <h4>Design & Prototyping</h4>
+                            <p>Creating intuitive user experiences and robust system architectures</p>
+                            <ul class="step-features">
+                                <li>UI/UX design</li>
+                                <li>System architecture</li>
+                                <li>Prototype development</li>
+                                <li>Stakeholder review</li>
+                            </ul>
+                        </div>
+                        <div class="step-connector"></div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">03</div>
+                        <div class="step-content">
+                            <h4>Development & Testing</h4>
+                            <p>Agile development with continuous integration and comprehensive testing</p>
+                            <ul class="step-features">
+                                <li>Sprint-based development</li>
+                                <li>Automated testing</li>
+                                <li>Code reviews</li>
+                                <li>Quality assurance</li>
+                            </ul>
+                        </div>
+                        <div class="step-connector"></div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">04</div>
+                        <div class="step-content">
+                            <h4>Deployment & Launch</h4>
+                            <p>Smooth deployment with zero-downtime strategies and thorough monitoring</p>
+                            <ul class="step-features">
+                                <li>CI/CD deployment</li>
+                                <li>Performance optimization</li>
+                                <li>Security hardening</li>
+                                <li>Go-live support</li>
+                            </ul>
+                        </div>
+                        <div class="step-connector"></div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">05</div>
+                        <div class="step-content">
+                            <h4>Maintenance & Support</h4>
+                            <p>Ongoing support, updates, and optimization to ensure long-term success</p>
+                            <ul class="step-features">
+                                <li>24/7 monitoring</li>
+                                <li>Regular updates</li>
+                                <li>Performance tuning</li>
+                                <li>Scalability planning</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Differentiators -->
+            <div class="differentiators-section">
+                <h3 class="differentiators-title">What Sets Us Apart</h3>
+                <div class="differentiators-grid">
+                    <div class="differentiator-card">
+                        <div class="diff-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4>AI-Powered Solutions</h4>
+                        <p>Leverage cutting-edge AI and machine learning to create intelligent, adaptive solutions that
+                            grow with your business.</p>
+                    </div>
+
+                    <div class="differentiator-card">
+                        <div class="diff-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h4>Rapid Time-to-Market</h4>
+                        <p>Our streamlined processes and expert team ensure your product reaches the market faster
+                            without compromising quality.</p>
+                    </div>
+
+                    <div class="differentiator-card">
+                        <div class="diff-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h4>Partnership Approach</h4>
+                        <p>We become an extension of your team, working collaboratively to achieve your business
+                            objectives and drive success.</p>
+                    </div>
+
+                    <div class="differentiator-card">
+                        <div class="diff-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Measurable Results</h4>
+                        <p>We focus on delivering tangible business outcomes with clear metrics and ROI tracking
+                            throughout the project.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technology Stack Integration -->
+            <div class="tech-integration">
+                <div class="tech-integration-content">
+                    <h3>Integrated Technology Excellence</h3>
+                    <p>We seamlessly combine multiple technology disciplines to deliver comprehensive solutions:</p>
+                    <div class="integration-points">
+                        <div class="integration-point">
+                            <i class="fas fa-code"></i>
+                            <span>Modern Development Frameworks</span>
+                        </div>
+                        <div class="integration-point">
+                            <i class="fas fa-cloud"></i>
+                            <span>Cloud-Native Architecture</span>
+                        </div>
+                        <div class="integration-point">
+                            <i class="fas fa-robot"></i>
+                            <span>AI & Machine Learning</span>
+                        </div>
+                        <div class="integration-point">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Enterprise Security</span>
+                        </div>
+                        <div class="integration-point">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Cross-Platform Solutions</span>
+                        </div>
+                        <div class="integration-point">
+                            <i class="fas fa-cogs"></i>
+                            <span>DevOps Automation</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tech-integration-visual">
+                    <div class="integration-orb">
+                        <div class="orb-core"></div>
+                        <div class="orb-ring ring-1"></div>
+                        <div class="orb-ring ring-2"></div>
+                        <div class="orb-ring ring-3"></div>
+                        <div class="tech-node node-1">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="tech-node node-2">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div class="tech-node node-3">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="tech-node node-4">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="tech-node node-5">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="tech-node node-6">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+
+
+    <!-- CTA Section -->
     <section class="cta-section" id="contact">
-        <div class="cta-content">
-            <h2>Ready to Build Something <span class="gradient-text">Extraordinary?</span></h2>
-            <p>Let's discuss your next project and create solutions that set new standards in your industry.</p>
-            <div class="hero-buttons">
-                <a href="mailto:hello@ionixtech.dev" class="btn-primary">Get in Touch →</a>
-                <a href="#" class="btn-secondary">View Portfolio</a>
+        <div class="container">
+            <div class="cta-card">
+                <div class="cta-glow"></div>
+                <div class="cta-content">
+                    <h2>Ready to Start Your Project?</h2>
+                    <p>Let's collaborate to bring your vision to life with cutting-edge technology and innovative
+                        solutions.</p>
+                    <div class="cta-buttons">
+                        <a href="mailto:hello@ionixtech.dev" class="btn btn-primary btn-large">
+                            <span>Get Started Today</span>
+                            <i class="fas fa-rocket"></i>
+                        </a>
+                        <a href="#" class="btn btn-secondary btn-large">
+                            <span>View Case Studies</span>
+                            <div class="btn-arrow">→</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="cta-orbits">
+                    <div class="orbit orbit-1"></div>
+                    <div class="orbit orbit-2"></div>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Ionix Technologies</h3>
-                <p>Elite development solutions for businesses that demand excellence. Direct to developers, no compromises.</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="Ionix Technologies" class="logo-image">
+                        <span>Ionix Technologies</span>
+                    </div>
+                    <p>Building the future with innovative digital solutions and cutting-edge technology.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">GitHub</a>
+                        <a href="#" class="social-link">LinkedIn</a>
+                        <a href="#" class="social-link">Twitter</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="#services">Web Development</a>
+                    <a href="#services">Mobile App Development</a>
+                    <a href="#services">AI & Machine Learning</a>
+                    <a href="#services">Cloud Services</a>
+                    <a href="#services">Edge Computing & IoT</a>
+                    <a href="#services">
+                        DevOps & DevSecOps</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    
+                    <a href="about.html">About Us</a>
+                    <a href="work.html">Our Work</a>
+                    <a href="careers.html">Careers</a>
+                    <a href="blog.html">Blog</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <a href="mailto:hello@ionixtech.dev">hello@ionixtech.dev</a>
+                    <a href="tel:+1234567890">+1 (234) 567-890</a>
+                    <a href="#">Schedule Call</a>
+                </div>
             </div>
-            <div class="footer-section">
-                <h3>Services</h3>
-                <a href="#services">Web Development</a>
-                <a href="#services">Mobile Apps</a>
-                <a href="#services">IoT Solutions</a>
-                <a href="#services">Developer Tools</a>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Ionix Technologies. Crafted with innovation and precision.</p>
             </div>
-            <div class="footer-section">
-                <h3>Company</h3>
-                <a href="#about">About Us</a>
-                <a href="#">Portfolio</a>
-                <a href="#">Careers</a>
-                <a href="#">Blog</a>
-            </div>
-            <div class="footer-section">
-                <h3>Connect</h3>
-                <a href="mailto:hello@ionixtech.dev">hello@ionixtech.dev</a>
-                <a href="#">GitHub</a>
-                <a href="#">LinkedIn</a>
-                <a href="#">Twitter</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Ionix Technologies. All rights reserved. Crafted with precision.</p>
         </div>
     </footer>
 
@@ -835,6 +1122,130 @@
                 }
             });
         });
+
+        // Counter Animation for Hero Section
+        function animateCounters() {
+            const counters = document.querySelectorAll('.hero-stat-number[data-count]');
+
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                const duration = 2000;
+                const frameDuration = 1000 / 60;
+                const totalFrames = Math.round(duration / frameDuration);
+                let frame = 0;
+
+                counter.textContent = '0';
+
+                const counterTimer = setInterval(() => {
+                    frame++;
+                    const progress = frame / totalFrames;
+                    const currentCount = Math.round(target * progress);
+
+                    if (counter.getAttribute('data-count') === '98') {
+                        counter.textContent = currentCount + '%';
+                    } else if (counter.getAttribute('data-count') === '5') {
+                        counter.textContent = currentCount + '+';
+                    } else {
+                        counter.textContent = currentCount + '+';
+                    }
+
+                    if (frame === totalFrames) {
+                        clearInterval(counterTimer);
+                        // Set final values
+                        if (counter.getAttribute('data-count') === '98') {
+                            counter.textContent = '98%';
+                        } else if (counter.getAttribute('data-count') === '5') {
+                            counter.textContent = '5+';
+                        } else {
+                            counter.textContent = '150+';
+                        }
+                    }
+                }, frameDuration);
+            });
+        }
+
+        // Initialize counters when in view
+        function initCounters() {
+            const statsSection = document.querySelector('.hero-stats');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.3,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            if (statsSection) {
+                observer.observe(statsSection);
+            }
+        }
+
+        // Create particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 30;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = Math.random() * 100 + 'vh';
+
+                const size = Math.random() * 4 + 1;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+
+                particle.style.animationDelay = Math.random() * 20 + 's';
+
+                container.appendChild(particle);
+            }
+        }
+
+        // Initialize everything when page loads
+        window.addEventListener('load', () => {
+            createParticles();
+            initCounters();
+
+            // Fallback for counters
+            setTimeout(() => {
+                const counters = document.querySelectorAll('.hero-stat-number[data-count]');
+                let needsAnimation = false;
+
+                counters.forEach(counter => {
+                    if (counter.textContent === '0' || counter.textContent === '0%' || counter.textContent === '0+') {
+                        needsAnimation = true;
+                    }
+                });
+
+                if (needsAnimation) {
+                    animateCounters();
+                }
+            }, 2000);
+        });
+
+        // Add hover effects
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-2px) scale(1.02)';
+            });
+
+            btn.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        console.log('Ionix Technologies - Dark Liquid Glass Theme Loaded!');
+
+
+
+
     </script>
 </body>
+
 </html>

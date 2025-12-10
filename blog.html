@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Ionix Technologies | Insights & Innovation</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Blog Specific Styles */
+        .blog-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 4rem;
+            position: relative;
+            text-align: center;
+        }
+
+        .blog-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-light);
+            border-radius: 50px;
+            padding: 0.6rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-medium);
+            backdrop-filter: blur(20px);
+            margin-bottom: 2rem;
+            text-align: center;
+          
+        }
+
+
+        .blog-hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            width: 100%;
+        }
+
+        .blog-hero-description {
+            font-size: 1.3rem;
+            color: var(--text-medium);
+            margin-bottom: 2rem;
+            line-height: 1.9;
+            text-align: center;
+            max-width: 900px;
+            width: 100%;
+            justify-content: center;
+        }
+
+
+        .blog-search {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+            display: flex;
+            width: 100%;
+            justify-content: left;
+        }
+
+
+        .search-input {
+            width: 100%;
+            max-width: 500px;
+            padding: 1.2rem 1.5rem;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-light);
+            border-radius: 50px;
+            backdrop-filter: blur(20px);
+            color: var(--text-light);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--saffron);
+            box-shadow: 0 0 20px rgba(255, 107, 53, 0.2);
+            text-align: left;
+        }
+
+        .search-input::placeholder {
+            text-align: center;
+            /* Center placeholder text */
+        }
+
+
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--gradient-saffron);
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+
+        .search-btn:hover {
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Blog Categories */
+        .blog-categories {
+            padding: 2rem 5%;
+            background: transparent;
+        }
+
+        .categories-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category-btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-light);
+            border-radius: 50px;
+            color: var(--text-medium);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(20px);
+        }
+
+        .category-btn.active,
+        .category-btn:hover {
+            background: var(--gradient-saffron);
+            color: white;
+            border-color: var(--saffron);
+            transform: translateY(-2px);
+        }
+
+        /* Blog Grid */
+        .blog-grid-section {
+            padding: 4rem 5%;
+            background: transparent;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .blog-card {
+            background: var(--bg-glass);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            backdrop-filter: blur(20px);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .blog-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .blog-card:hover {
+            border-color: var(--saffron);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .blog-card-image {
+            height: 200px;
+            background: var(--gradient-saffron);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .blog-card:hover .blog-card-image img {
+            transform: scale(1.05);
+        }
+
+        .blog-card-category {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .blog-card-content {
+            padding: 1.5rem;
+        }
+
+        .blog-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-medium);
+        }
+
+        .blog-card-date {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .blog-card-read-time {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .blog-card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .blog-card-excerpt {
+            color: var(--text-medium);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .blog-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .blog-card-author {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .author-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: var(--gradient-saffron);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .read-more {
+            color: var(--saffron);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            gap: 0.75rem;
+        }
+
+        /* Featured Post */
+        .featured-post {
+            padding: 4rem 5%;
+            background: transparent;
+        }
+
+        .featured-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .featured-card {
+            background: var(--bg-glass);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            backdrop-filter: blur(20px);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            transition: all 0.4s ease;
+        }
+
+        .featured-card:hover {
+            border-color: var(--saffron);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .featured-content {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--gradient-saffron);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            width: fit-content;
+        }
+
+        .featured-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .featured-excerpt {
+            color: var(--text-medium);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .featured-image {
+            height: 100%;
+            min-height: 400px;
+            background: var(--gradient-saffron);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .featured-card:hover .featured-image img {
+            transform: scale(1.05);
+        }
+
+        /* Newsletter */
+        .blog-newsletter {
+            padding: 6rem 5%;
+            background: transparent;
+        }
+
+        .newsletter-card {
+            background: var(--bg-glass);
+            border-radius: 24px;
+            padding: 4rem 3rem;
+            text-align: center;
+            border: 1px solid var(--border-light);
+            backdrop-filter: blur(20px);
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter-glow {
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, rgba(255, 107, 53, 0) 70%);
+            z-index: -1;
+        }
+
+        .newsletter-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-description {
+            color: var(--text-medium);
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 1rem;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            background: var(--bg-glass-heavy);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            color: var(--text-light);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--saffron);
+        }
+
+        .newsletter-btn {
+            padding: 1rem 2rem;
+            background: var(--gradient-saffron);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .newsletter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        /* Pagination */
+        .blog-pagination {
+            padding: 3rem 5%;
+            background: transparent;
+        }
+
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .pagination-btn {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-glass);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            color: var(--text-medium);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pagination-btn.active,
+        .pagination-btn:hover {
+            background: var(--gradient-saffron);
+            color: white;
+            border-color: var(--saffron);
+        }
+
+        .pagination-dots {
+            color: var(--text-medium);
+            font-weight: 600;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .blog-hero-title {
+                font-size: 2.5rem;
+            }
+
+
+            .featured-card {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-content {
+                padding: 2rem;
+            }
+
+            .featured-title {
+                font-size: 1.7rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .blog-hero-title {
+                font-size: 2rem;
+            }
+
+            .blog-hero-description {
+                font-size: 1.1rem;
+                padding: 0 1rem;
+            }
+
+            .blog-search {
+                max-width: 400px;
+                padding: 0 1rem;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-image {
+                min-height: 300px;
+            }
+
+            .newsletter-card {
+                padding: 3rem 2rem;
+            }
+
+            .newsletter-title {
+                font-size: 1.8rem;
+            }
+
+
+        }
+
+        @media (max-width: 480px) {
+
+            .blog-hero {
+                padding: 6rem 5% 2rem;
+            }
+
+            .blog-hero-title {
+                font-size: 1.8rem;
+            }
+
+            .blog-hero-description {
+                font-size: 1rem;
+            }
+
+            .search-input {
+                padding: 1rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .search-btn {
+                width: 40px;
+                height: 40px;
+            }
+
+            .blog-card-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .blog-card-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .categories-container {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Liquid Glass Background -->
+    <div class="liquid-bg">
+        <div class="glass-layer-1"></div>
+        <div class="glass-layer-2"></div>
+        <div class="floating-blobs">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+            <div class="blob blob-4"></div>
+        </div>
+    </div>
+
+    <!-- Animated Particles -->
+    <div class="particles-container" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Ionix Technologies" class="logo-image">
+                <span class="logo-text">Ionix Technologies</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="work.html" class="nav-link">Our Work</a></li>
+                <li><a href="careers.html" class="nav-link">Careers</a></li>
+                <li><a href="blog.html" class="nav-link active">Blog</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <a href="index.html#contact" class="cta-btn glow-btn">
+                <span>Start Project</span>
+                <div class="btn-shine"></div>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Blog Hero Section -->
+    <section class="blog-hero">
+        <div class="container">
+            <div class="blog-hero-content">
+                <div class="hero-badge">
+                    <div class="pulse-dot"></div>
+                    Insights & Innovation
+                </div>
+                <h1 class="blog-hero-title">
+                    Ionix <span class="gradient-text">Blog</span>
+                </h1>
+                <p class="blog-hero-description">
+                    Explore the latest in technology, development insights, and industry trends from our team of
+                    experts.
+                </p>
+                <div class="blog-search">
+                    <input type="text" class="search-input" placeholder="Search articles...">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Blog Categories -->
+    <section class="blog-categories">
+        <div class="container">
+            <div class="categories-container">
+                <button class="category-btn active">All Articles</button>
+                <button class="category-btn">Web Development</button>
+                <button class="category-btn">Mobile Apps</button>
+                <button class="category-btn">AI & Machine Learning</button>
+                <button class="category-btn">Cloud & DevOps</button>
+                <button class="category-btn">UI/UX Design</button>
+                <button class="category-btn">Industry Trends</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Post -->
+    <section class="featured-post">
+        <div class="container">
+            <div class="featured-container">
+                <div class="featured-card">
+                    <div class="featured-content">
+                        <div class="featured-badge">
+                            <i class="fas fa-star"></i>
+                            Featured Article
+                        </div>
+                        <h2 class="featured-title">The Future of React: Concurrent Features and Beyond</h2>
+                        <p class="featured-excerpt">
+                            Explore how React's latest concurrent features are revolutionizing the way we build user
+                            interfaces, with suspense, transitions, and selective hydration changing the performance
+                            landscape.
+                        </p>
+                        <div class="blog-card-meta">
+                            <div class="blog-card-date">
+                                <i class="far fa-calendar"></i>
+                                March 15, 2025
+                            </div>
+                            <div class="blog-card-read-time">
+                                <i class="far fa-clock"></i>
+                                8 min read
+                            </div>
+                        </div>
+                        <div class="blog-card-author">
+                            <div class="author-avatar">SJ</div>
+                            <div class="author-name">Sarah Johnson</div>
+                        </div>
+                    </div>
+                    <div class="featured-image">
+                        <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                            alt="React Development">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Grid -->
+    <section class="blog-grid-section">
+        <div class="container">
+            <div class="blog-grid">
+                <!-- Blog Card 1 -->
+                <div class="blog-card">
+                    <div class="blog-card-image">
+                        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                            alt="AI Technology">
+                        <div class="blog-card-category">AI & Machine Learning</div>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <div class="blog-card-date">
+                                <i class="far fa-calendar"></i>
+                                March 12, 2025
+                            </div>
+                            <div class="blog-card-read-time">
+                                <i class="far fa-clock"></i>
+                                6 min read
+                            </div>
+                        </div>
+                        <h3 class="blog-card-title">How Generative AI is Transforming Software Development</h3>
+                        <p class="blog-card-excerpt">
+                            Discover how tools like GitHub Copilot and ChatGPT are changing the way developers write
+                            code and solve complex problems.
+                        </p>
+                        <div class="blog-card-footer">
+                            <div class="blog-card-author">
+                                <div class="author-avatar">MJ</div>
+                                <div class="author-name">Mike Johnson</div>
+                            </div>
+                            <a href="#" class="read-more">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Card 2 -->
+                <div class="blog-card">
+                    <div class="blog-card-image">
+                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                            alt="Mobile Development">
+                        <div class="blog-card-category">Mobile Apps</div>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <div class="blog-card-date">
+                                <i class="far fa-calendar"></i>
+                                March 8, 2025
+                            </div>
+                            <div class="blog-card-read-time">
+                                <i class="far fa-clock"></i>
+                                5 min read
+                            </div>
+                        </div>
+                        <h3 class="blog-card-title">Flutter vs React Native in 2025: Which Should You Choose?</h3>
+                        <p class="blog-card-excerpt">
+                            A comprehensive comparison of the two leading cross-platform frameworks and their
+                            suitability for different project types.
+                        </p>
+                        <div class="blog-card-footer">
+                            <div class="blog-card-author">
+                                <div class="author-avatar">AR</div>
+                                <div class="author-name">Anna Rodriguez</div>
+                            </div>
+                            <a href="#" class="read-more">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Card 3 -->
+                <div class="blog-card">
+                    <div class="blog-card-image">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                            alt="Cloud Computing">
+                        <div class="blog-card-category">Cloud & DevOps</div>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <div class="blog-card-date">
+                                <i class="far fa-calendar"></i>
+                                March 5, 2025
+                            </div>
+                            <div class="blog-card-read-time">
+                                <i class="far fa-clock"></i>
+                                7 min read
+                            </div>
+                        </div>
+                        <h3 class="blog-card-title">Serverless Architecture: Benefits, Challenges, and Best Practices
+                        </h3>
+                        <p class="blog-card-excerpt">
+                            Understanding when and how to implement serverless solutions for optimal performance and
+                            cost efficiency.
+                        </p>
+                        <div class="blog-card-footer">
+                            <div class="blog-card-author">
+                                <div class="author-avatar">DC</div>
+                                <div class="author-name">David Chen</div>
+                            </div>
+                            <a href="#" class="read-more">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Card 4 -->
+                <div class="blog-card">
+                    <div class="blog-card-image">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                            alt="Web Security">
+                        <div class="blog-card-category">Web Development</div>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <div class="blog-card-date">
+                                <i class="far fa-calendar"></i>
+                                February 28, 2025
+                            </div>
+                            <div class="blog-card-read-time">
+                                <i class="far fa-clock"></i>
+                                10 min read
+                            </div>
+                        </div>
+                        <h3 class="blog-card-title">The Complete Guide to Web Application Security in 2025</h3>
+                        <p class="blog-card-excerpt">
+                            Essential security practices every developer should implement to protect against modern web
+                            vulnerabilities and attacks.
+                        </p>
+                        <div class="blog-card-footer">
+                            <div class="blog-card-author">
+                                <div class="author-avatar">SC</div>
+                                <div class="author-name">Sarah Chen</div>
+                            </div>
+                            <a href="#" class="read-more">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Card 5 -->
+                <div class="blog-card">
+                    <div class="blog-card-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                            alt="UI/UX Design">
+                        <div class="blog-card-category">UI/UX Design</div>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <div class="blog-card-date">
+                                <i class="far fa-calendar"></i>
+                                February 24, 2025
+                            </div>
+                            <div class="blog-card-read-time">
+                                <i class="far fa-clock"></i>
+                                5 min read
+                            </div>
+                        </div>
+                        <h3 class="blog-card-title">Design Systems: Creating Consistency at Scale</h3>
+                        <p class="blog-card-excerpt">
+                            How established design systems help teams maintain visual consistency and improve
+                            development efficiency across large projects.
+                        </p>
+                        <div class="blog-card-footer">
+                            <div class="blog-card-author">
+                                <div class="author-avatar">ER</div>
+                                <div class="author-name">Emma Roberts</div>
+                            </div>
+                            <a href="#" class="read-more">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Card 6 -->
+                <div class="blog-card">
+                    <div class="blog-card-image">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                            alt="Data Analytics">
+                        <div class="blog-card-category">Industry Trends</div>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <div class="blog-card-date">
+                                <i class="far fa-calendar"></i>
+                                February 20, 2025
+                            </div>
+                            <div class="blog-card-read-time">
+                                <i class="far fa-clock"></i>
+                                9 min read
+                            </div>
+                        </div>
+                        <h3 class="blog-card-title">The Rise of Edge Computing: What It Means for Developers</h3>
+                        <p class="blog-card-excerpt">
+                            Exploring how edge computing is changing application architecture and the new opportunities
+                            it creates for developers.
+                        </p>
+                        <div class="blog-card-footer">
+                            <div class="blog-card-author">
+                                <div class="author-avatar">TK</div>
+                                <div class="author-name">Thomas Kim</div>
+                            </div>
+                            <a href="#" class="read-more">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="blog-newsletter">
+        <div class="container">
+            <div class="newsletter-card">
+                <div class="newsletter-glow"></div>
+                <h2 class="newsletter-title">Stay Updated with Our Latest Insights</h2>
+                <p class="newsletter-description">
+                    Get the newest articles on technology trends, development tips, and industry news delivered directly
+                    to your inbox.
+                </p>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                    <button type="submit" class="newsletter-btn">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pagination -->
+    <section class="blog-pagination">
+        <div class="container">
+            <div class="pagination-container">
+                <button class="pagination-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="pagination-btn active">1</button>
+                <button class="pagination-btn">2</button>
+                <button class="pagination-btn">3</button>
+                <div class="pagination-dots">...</div>
+                <button class="pagination-btn">8</button>
+                <button class="pagination-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="Ionix Technologies" class="logo-image">
+                        <span>Ionix Technologies</span>
+                    </div>
+                    <p>Building the future with innovative digital solutions and cutting-edge technology since 2022.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">GitHub</a>
+                        <a href="#" class="social-link">LinkedIn</a>
+                        <a href="#" class="social-link">Twitter</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="index.html#services">Web Development</a>
+                    <a href="index.html#services">Mobile App Development</a>
+                    <a href="index.html#services">AI & Machine Learning</a>
+                    <a href="index.html#services">Cloud Services</a>
+                    <a href="index.html#services">Edge Computing & IoT</a>
+                    <a href="index.html#services">DevOps & DevSecOps</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <a href="about.html">About Us</a>
+                    <a href="work.html">Our Work</a>
+                    <a href="careers.html">Careers</a>
+                    <a href="blog.html" class="active">Blog</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <a href="mailto:hello@ionixtech.dev">hello@ionixtech.dev</a>
+                    <a href="tel:+1234567890">+1 (234) 567-890</a>
+                    <a href="index.html#contact">Schedule Call</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Ionix Technologies. Crafted with innovation and precision.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Reuse the same JavaScript from main site
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Create particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 30;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = Math.random() * 100 + 'vh';
+
+                const size = Math.random() * 4 + 1;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+
+                particle.style.animationDelay = Math.random() * 20 + 's';
+
+                container.appendChild(particle);
+            }
+        }
+
+        // Blog card animation on scroll
+        function animateBlogCards() {
+            const blogCards = document.querySelectorAll('.blog-card');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            blogCards.forEach(card => {
+                observer.observe(card);
+            });
+        }
+
+        // Category filter functionality
+        function setupCategoryFilter() {
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const blogCards = document.querySelectorAll('.blog-card');
+
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+
+                    const category = btn.textContent;
+
+                    // Filter blog cards
+                    blogCards.forEach(card => {
+                        if (category === 'All Articles') {
+                            card.style.display = 'block';
+                        } else {
+                            const cardCategory = card.querySelector('.blog-card-category').textContent;
+                            if (cardCategory === category) {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+        }
+
+        // Search functionality
+        function setupSearch() {
+            const searchInput = document.querySelector('.search-input');
+            const searchBtn = document.querySelector('.search-btn');
+            const blogCards = document.querySelectorAll('.blog-card');
+
+            function performSearch() {
+                const searchTerm = searchInput.value.toLowerCase();
+
+                blogCards.forEach(card => {
+                    const title = card.querySelector('.blog-card-title').textContent.toLowerCase();
+                    const excerpt = card.querySelector('.blog-card-excerpt').textContent.toLowerCase();
+
+                    if (title.includes(searchTerm) || excerpt.includes(searchTerm)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            searchBtn.addEventListener('click', performSearch);
+            searchInput.addEventListener('keyup', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+        }
+
+        // Initialize when page loads
+        window.addEventListener('load', () => {
+            createParticles();
+            animateBlogCards();
+            setupCategoryFilter();
+            setupSearch();
+        });
+
+        // Add hover effects
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-2px) scale(1.02)';
+            });
+
+            btn.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        console.log('Ionix Technologies - Blog Page Loaded!');
+    </script>
+</body>
+
+</html>
